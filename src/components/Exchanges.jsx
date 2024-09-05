@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import  { useEffect, useState } from 'react'
 import axios from 'axios'
@@ -11,7 +12,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import Loader from './Loader'
-// import ErrorComponent from './ErrorComponent'
+import ErrorComponent from './ErrorComponent'
 
 const Exchanges = () => {
   const [exchanges, setExchanges] = useState([])
