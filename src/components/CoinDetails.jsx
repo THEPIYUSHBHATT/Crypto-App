@@ -95,6 +95,42 @@ function CoinDetails() {
                   {coins.market_data.price_change_percentage_24h}%
                 </StatHelpText>
               </Stat>
+
+              <Badge
+                fontSize={'2xl'}
+                bgColor={'blackAlpha.900'}
+                color={'white'}
+              >
+                {`#${coins.market_cap_rank}`}
+              </Badge>
+
+              <CustomBar
+                high={`${currencySymbol}${coins.market_data.high_24h[currency]}`}
+                low={`${currencySymbol}${coins.market_data.low_24h[currency]}`}
+              />
+
+              <Box w={'full'} p="4">
+                <Item
+                  title={'Max Supply'}
+                  value={coins.market_data.max_supply}
+                />
+                <Item
+                  title={'Circulating Supply'}
+                  value={coins.market_data.circulating_supply}
+                />
+                <Item
+                  title={'Market Cap'}
+                  value={`${currencySymbol}${coins.market_data.market_cap[currency]}`}
+                />
+                <Item
+                  title={'All Time Low'}
+                  value={`${currencySymbol}${coins.market_data.atl[currency]}`}
+                />
+                <Item
+                  title={'All Time High'}
+                  value={`${currencySymbol}${coins.market_data.ath[currency]}`}
+                />
+              </Box>
             </VStack>
           </>
         )}
@@ -102,4 +138,24 @@ function CoinDetails() {
     </>
   )
 }
+
+const Item = ({ title, value }) => (
+  <HStack justifyContent={'space-between'} w={'full'} my={'4'}>
+    <Text fontFamily={'Bebas Neue'} letterSpacing={'widest'}>
+      {title}
+    </Text>
+    <Text>{value}</Text>
+  </HStack>
+)
+
+const CustomBar = ({ high, low }) => (
+  <VStack w={'full'}>
+    <Progress value={50} colorScheme={'teal'} w={'full'} />
+    <HStack justifyContent={'space-between'} w={'full'}>
+      <Badge children={low} colorScheme={'red'} />
+      <Text fontSize={'sm'}>24H Range</Text>
+      <Badge children={high} colorScheme={'green'} />
+    </HStack>
+  </VStack>
+)
 export default CoinDetails
